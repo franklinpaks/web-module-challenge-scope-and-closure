@@ -54,6 +54,7 @@ function counter2() {
   return count++;
 }
 
+// Counter 1 uses a closure because it is using the function in counter to access variables that are inside the counterMaker function. Counter 1 would be better used when wanting to store variables without too much hassle and maintain it for use later.
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
@@ -64,10 +65,13 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  let random = Math.floor((Math.random() * 3));
+  
+   return random;
 }
 
+console.log("Task 2: ", inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,9 +87,21 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, innings){
+  let home = 0;
+  let away = 0;
+  for( let i = 0; i < innings; i++) {
+    home = home + inningCB() ;
+    away = away + inningCB();
+  }
+
+  return {
+    Home: home,
+    Away: away
+  }
 }
+
+console.log("Task 3: ", finalScore( inning, 9));
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,10 +117,15 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningCB) {
+  return {
+    Home: inningCB(),
+    Away: inningCB()
+  }
 
 }
+
+console.log("Task 4: ", getInningScore(inning));
 
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
